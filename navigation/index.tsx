@@ -12,10 +12,14 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import Add from '../screens/Add';
+import Detail from '../screens/Detail';
+import Home from '../screens/Home';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import Update from '../screens/Update';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -38,10 +42,14 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      {/* <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} /> */}
+      <Stack.Screen name="Home" component={Home} options={{ headerShown: false  }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        {/* <Stack.Screen name="Modal" component={ModalScreen} /> */}
+        <Stack.Screen name="Detail" options={{ headerShown: false  }} component={Detail} />
+        <Stack.Screen name="Add" options={{ headerShown: false  }} component={Add} />
+        <Stack.Screen name="Update" options={{ headerShown: false  }} component={Update} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -70,7 +78,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Modal')}
+              onPress={() => navigation.navigate('Detail')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
